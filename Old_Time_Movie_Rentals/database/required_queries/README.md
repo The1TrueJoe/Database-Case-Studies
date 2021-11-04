@@ -4,7 +4,7 @@
 2. List all the customers who lie in UpTown. List their name and address sorted by name
 3. List the total payment received by each employee, sorted by employee number
 4. List the total number of movies rented out by each store, grouped and sorted by store ID
-5. List all the movies never rented out in each store, and grouped by store ID ans sorted by movie ID
+5. List all the movies never rented out in each store, and grouped by store ID and sorted by movie ID
 6. List all the customers who did not rent any movie and sort by customer ID
 7. List the total amount received by each payment type, sort by payment description
 8. Display the number of movies rented out based on the movie genre, sort by genre
