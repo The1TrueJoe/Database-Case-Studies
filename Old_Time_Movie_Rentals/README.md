@@ -4,8 +4,8 @@ Files (TEMP): https://drive.google.com/drive/folders/1FBlnWeJtNBFF6alHhgGA9eqtbi
 
 ### Links
 
-- [Assignment Outline](given_docs/)
-- [Assignment Documents](documents/)
-- [Database](database/)
-- [Cashier Application](cashier_app/)
-- [Rental Web Application](rental_app/)
+- [Assignment Outline](given_docs/) Outline for the assignment
+- [Assignment Documents](documents/) Business documents (i.e. Executive Summary and Presentation)
+- [Database](database/) Database structure and data
+- [Cashier Application](applications/cashier_app/) Applications for cashiers to enter a transaction
+- [Rental Web Application](applications/web_catalog/) Web catalog
