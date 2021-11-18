@@ -1,0 +1,17 @@
+-- Distributors
+-- INSERT INTO DISTRIBUTOR(DistributorID, DistributorName, DistributorCity, DistributorState, DistributorZIP, DistributorPhoneNumber)
+-- VALUES 
+-- ("100", "Magnolia Pictures", "Florence", "SC", "29501", "(843) 543-3481"),
+-- ("200","Walt Disney", "Burbank", "CA", "91501", "(949) 223-9058"),
+-- ("300", "Warner Bros", "Burbank", "CA", "91501", "(949) 501-9998"),
+-- ("400", "Netflix", "Los Gatos", "CA", "95032", "(408) 589-1110"),
+-- ("500", "Paramount", "Hollywood", "CA", "90510", "(323) 956-8811")
+
+-- Store
+-- INSERT INTO STORE(StoreID, DistributorID, StoreName, StoreStreet, StoreCity, StoreState, StoreZIP, StorePhoneNumber)
+-- VALUES 
+-- ("01", "200", "Disney Express", "123 Main St.", "Columbia", "SC", "29072", "(803) 893-2341"),
+-- ("02", "100", "Magnolia Movies", "101 Main St.", "Columbia", "SC", "29072", "(803) 333-2099"),
+-- ("03", "300", "Watch Warner", "901 Read St.", "Columbia", "SC", "29072", "(803) 111-0987"),
+-- ("04", "400", "Netflix Movies", "652 Calhoun Dr.", "Columbia", "SC", "29072", "(803) 893-2341"),
+-- ("05", "500", "Everything Paramount", "202 Low St.", "Columbia", "SC", "29072", "(803) 987-2331")
