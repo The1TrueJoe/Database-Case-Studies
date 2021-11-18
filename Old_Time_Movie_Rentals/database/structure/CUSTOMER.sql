@@ -7,7 +7,7 @@ create table CUSTOMER
     CustomerStreet char(30) not null,
     CustomerCity   char(30) not null,
     CustomerState  char(30) not null,
-    CustomerZIP    char(30) not null,
+    CustomerZIP    int(11) not null,
     CustomerPhone  char(30) not null,
 
     primary key (CustomerID)
