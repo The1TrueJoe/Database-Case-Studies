@@ -1,3 +1,6 @@
+USE CASE03_OTMR;
+
+
 create table MOVIERENTAL
 (
     MediaID        char(30) not null,
@@ -10,7 +13,12 @@ create table MOVIERENTAL
     RentalDateTime date     not null,
     DueDate        date     not null,
     OverdueCharge  char(30) not null,
-    RentalRate     char(30) not null
-)
-    collate = utf8_unicode_ci;
+    RentalRate     char(30) not null,
 
+    primary key (MediaID, MovieID, RentalDateTime),
+    foreign key (CustomerID) references CUSTOMER(CustomerID),
+    foreign key (EmployeeSIN) references EMPLOYEE(EmployeeSIN),
+    foreign key (PaymentID) references PAYMENT(PaymentID),
+    foreign key (StatusID) references RENTALSTATUS(StatusID)
+    
+)

@@ -1,3 +1,5 @@
+use CASE03_OTMR;
+
 create table STORE
 (
     StoreID          char(30) not null,
@@ -7,7 +9,9 @@ create table STORE
     StoreCity        char(30) not null,
     StoreState       char(30) not null,
     StoreZIP         char(30) not null,
-    StorePhoneNumber char(30) not null
-)
-    collate = utf8_unicode_ci;
+    StorePhoneNumber char(30) not null,
 
+    primary key (StoreID),
+    foreign key (DistributorID) references DISTRIBUTOR(DistributorID)
+    
+)

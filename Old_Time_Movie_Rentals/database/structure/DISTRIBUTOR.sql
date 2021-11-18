@@ -1,3 +1,5 @@
+USE CASE03_OTMR;
+
 create table DISTRIBUTOR
 (
     DistributorID          char(30) not null,
@@ -5,7 +7,8 @@ create table DISTRIBUTOR
     DistributorCity        char(30) not null,
     DistributorState       char(30) not null,
     DistributorZIP         char(30) not null,
-    DistributorPhoneNumber char(30) not null
-)
-    collate = utf8_unicode_ci;
+    DistributorPhoneNumber char(30) not null,
 
+    primary key (DistributorID)
+
+)

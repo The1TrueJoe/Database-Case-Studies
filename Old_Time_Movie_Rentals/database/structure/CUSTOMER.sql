@@ -1,3 +1,5 @@
+use CASE03_OTMR;
+
 create table CUSTOMER
 (
     CustomerID     char(30) not null,
@@ -6,7 +8,8 @@ create table CUSTOMER
     CustomerCity   char(30) not null,
     CustomerState  char(30) not null,
     CustomerZIP    char(30) not null,
-    CustomerPhone  char(30) not null
-)
-    collate = utf8_unicode_ci;
+    CustomerPhone  char(30) not null,
 
+    primary key (CustomerID)
+
+)
