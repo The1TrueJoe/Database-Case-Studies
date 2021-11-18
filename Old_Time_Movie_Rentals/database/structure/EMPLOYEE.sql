@@ -7,7 +7,10 @@ create table EMPLOYEE
     EmployeeCity        char(30) not null,
     EmployeeState       char(30) not null,
     EmployeePhoneNumber char(30) not null,
-    EmployeeHireDate    date     not null
+    EmployeeHireDate    date     not null,
+
+    PRIMARY KEY (EmployeeSIN),
+    FOREIGN KEY (ManagerSIN) REFERENCES EMPLOYEE(EmployeeSIN)
 )
     collate = utf8_unicode_ci;
 
