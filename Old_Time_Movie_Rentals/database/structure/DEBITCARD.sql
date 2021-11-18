@@ -1,7 +1,4 @@
-USE CASE03_OTMR;
-
-
-DROP TABLE DEBITCARD;
+use CASE03_OTMR;
 
 create table DEBITCARD
 (
@@ -10,8 +7,7 @@ create table DEBITCARD
     DebitCardType   char(30) not null,
     DebitCardExpiry char(30) not null,
 
-    PRIMARY KEY (PaymentID),
-    FOREIGN KEY (PaymentID) REFERENCES PAYMENTTYPE(PaymentID)
-)
-    collate = utf8_unicode_ci;
+    primary key (PaymentID),
+    foreign key (PaymentID) references PAYMENTTYPE(PaymentID)
 
+)

@@ -11,10 +11,9 @@ create table PAYMENT
     PaymentAmount   char(30) not null,
     PaymantDateTime date     not null,
 
-    PRIMARY KEY (PaymentID),
-    FOREIGN KEY (CustomerID) references CUSTOMER(CustomerID),
-    FOREIGN KEY (EmployeeSIN) REFERENCES EMPLOYEE(EmployeeSIN),
-    FOREIGN KEY (StatusID) REFERENCES PAYMENTSTATUS(StatusID)
+    primary key (PaymentID),
+    foreign key (CustomerID) references CUSTOMER(CustomerID),
+    foreign key (EmployeeSIN) references EMPLOYEE(EmployeeSIN),
+    foreign key (StatusID) references PAYMENTSTATUS(StatusID)
+    
 )
-    collate = utf8_unicode_ci;
-

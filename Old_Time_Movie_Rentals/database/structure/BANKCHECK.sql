@@ -1,7 +1,4 @@
-USE CASE03_OTMR;
-
-
-DROP TABLE BANKCHECK;
+use CASE03_OTMR;
 
 create table BANKCHECK
 (
@@ -10,7 +7,7 @@ create table BANKCHECK
     BankNumber  char(30) not null,
     BankName    char(30) not null,
 
-    PRIMARY KEY (PaymentID),
-    FOREIGN KEY (PaymentID) REFERENCES PAYMENTTYPE(PaymentID)
+    primary key (PaymentID),
+    foreign key (PaymentID) references PAYMENTTYPE(PaymentID)
+    
 )
-    collate = utf8_unicode_ci;

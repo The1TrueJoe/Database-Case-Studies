@@ -5,9 +5,8 @@ create table STOREMOVIE
     MovieID char(30) not null,
     StoreID char(30) not null,
 
-    PRIMARY KEY (MovieID, StoreID),
-    FOREIGN KEY (MovieID) REFERENCES MOVIE(MovieID),
-    FOREIGN KEY (StoreID) REFERENCES STORE(StoreID)
+    primary key (MovieID, StoreID),
+    foreign key (MovieID) references MOVIE(MovieID),
+    foreign key (StoreID) references STORE(StoreID)
+    
 )
-    collate = utf8_unicode_ci;
-

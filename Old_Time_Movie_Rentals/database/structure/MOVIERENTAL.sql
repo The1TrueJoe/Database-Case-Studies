@@ -15,11 +15,10 @@ create table MOVIERENTAL
     OverdueCharge  char(30) not null,
     RentalRate     char(30) not null,
 
-    PRIMARY KEY (MediaID, MovieID, RentalDateTime),
-    FOREIGN KEY (CustomerID) REFERENCES CUSTOMER(CustomerID),
-    FOREIGN KEY (EmployeeSIN) REFERENCES EMPLOYEE(EmployeeSIN),
-    FOREIGN KEY (PaymentID) REFERENCES PAYMENT(PaymentID),
-    FOREIGN KEY (StatusID) REFERENCES RENTALSTATUS(StatusID)
+    primary key (MediaID, MovieID, RentalDateTime),
+    foreign key (CustomerID) references CUSTOMER(CustomerID),
+    foreign key (EmployeeSIN) references EMPLOYEE(EmployeeSIN),
+    foreign key (PaymentID) references PAYMENT(PaymentID),
+    foreign key (StatusID) references RENTALSTATUS(StatusID)
+    
 )
-    collate = utf8_unicode_ci;
-

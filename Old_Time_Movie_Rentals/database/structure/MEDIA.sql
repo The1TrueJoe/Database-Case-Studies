@@ -1,4 +1,4 @@
-USE CASE03_OTMR;
+use CASE03_OTMR;
 
 create table MEDIA
 (
@@ -10,6 +10,5 @@ create table MEDIA
     primary key (MediaID),
     foreign key (MovieID) references MOVIE(MovieID),
     foreign key (StoreID) references STOREMOVIE(StoreID)
-)
-    collate = utf8_unicode_ci;
 
+)

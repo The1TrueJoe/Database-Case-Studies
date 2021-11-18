@@ -13,6 +13,5 @@ create table STORE
 
     primary key (StoreID),
     foreign key (DistributorID) references DISTRIBUTOR(DistributorID)
+    
 )
-    collate = utf8_unicode_ci;
-

@@ -5,8 +5,7 @@ create table CASH
     PaymentID char(30) not null,
     Description char(30) not null,
 
-    PRIMARY KEY (PaymentID),
-    FOREIGN KEY (PaymentID) REFERENCES PAYMENTTYPE(PaymentID)
-)
+    primary key (PaymentID),
+    foreign key (PaymentID) references PAYMENTTYPE(PaymentID)
 
-    collate = utf8_unicode_ci;
+)

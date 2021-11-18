@@ -9,7 +9,6 @@ create table DISTRIBUTOR
     DistributorZIP         char(30) not null,
     DistributorPhoneNumber char(30) not null,
 
-    PRIMARY KEY (DistributorID)
-)
-    collate = utf8_unicode_ci;
+    primary key (DistributorID)
 
+)

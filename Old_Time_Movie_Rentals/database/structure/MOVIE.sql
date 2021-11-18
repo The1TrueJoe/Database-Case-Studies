@@ -1,4 +1,4 @@
-USE CASE03_OTMR;
+use CASE03_OTMR;
 
 create table MOVIE
 (
@@ -10,7 +10,6 @@ create table MOVIE
     Rating          char(30) not null,
     Genre           char(30) not null,
 
-    PRIMARY KEY (MovieID)
-)
-    collate = utf8_unicode_ci;
+    primary key (MovieID)
 
+)

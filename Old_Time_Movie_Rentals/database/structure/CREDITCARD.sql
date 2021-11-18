@@ -1,7 +1,4 @@
-USE CASE03_OTMR;
-
-
-drop table CREDITCARD;
+use CASE03_OTMR;
 
 create table CREDITCARD
 (
@@ -11,7 +8,6 @@ create table CREDITCARD
     CreditCardExpiry char(30) not null,
 
     primary key (PaymentID),
-    FOREIGN KEY (PaymentID) REFERENCES PAYMENTTYPE(PaymentID)
-)
-    collate = utf8_unicode_ci;
+    foreign key (PaymentID) references PAYMENTTYPE(PaymentID)
 
+)
