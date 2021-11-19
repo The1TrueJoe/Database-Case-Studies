@@ -12,4 +12,8 @@ create table MOVIE
 
     primary key (MovieID)
 
-)
+);
+
+USE CASE03_OTMR;
+alter table MOVIE modify MovieTitle char(255) not null;
+alter table MOVIE modify MovieDescriptor char(255) not null;
