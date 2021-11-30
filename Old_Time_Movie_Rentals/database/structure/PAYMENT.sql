@@ -1,4 +1,4 @@
-USE CASE03_OTMR
+USE CASE03_OTMR;
 
 drop table PAYMENT;
 
@@ -16,4 +16,4 @@ create table PAYMENT
     foreign key (EmployeeSIN) references EMPLOYEE(EmployeeSIN),
     foreign key (StatusID) references PAYMENTSTATUS(StatusID)
     
-)
+);
