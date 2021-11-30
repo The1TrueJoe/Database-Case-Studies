@@ -21,4 +21,14 @@ create table MOVIERENTAL
     foreign key (PaymentID) references PAYMENT(PaymentID),
     foreign key (StatusID) references RENTALSTATUS(StatusID)
     
-)
+);
+
+
+USE CASE03_OTMR;
+
+alter table MOVIERENTAL
+    ADD UNIQUE (MediaID);
+
+alter table MOVIERENTAL
+    add constraint MOVIERENTAL___fk
+        foreign key (MediaID) references MEDIA(MediaID);
