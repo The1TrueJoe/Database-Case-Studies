@@ -4,8 +4,7 @@ List all the movies never rented out in each store, and grouped by store ID ans 
 
 /* Specify the schema to user */
 use CASE03_OTMR;
-
-SELECT MovieID, StoreID
-FROM MEDIA
-WHERE MediaID NOT IN (SELECT MediaID FROM MOVIERENTAL)
+SELECT MEDIA.MovieID, MEDIA.StoreID, MOVIE.MovieTitle
+FROM MEDIA, MOVIE
+WHERE MEDIA.MovieID = MOVIE.MovieID AND MEDIA.MovieID NOT IN (SELECT MOVIERENTAL.MovieID FROM MOVIERENTAL)
 GROUP BY StoreID, MovieID;
