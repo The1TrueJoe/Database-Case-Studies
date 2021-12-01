@@ -1,6 +1,5 @@
 USE CASE03_OTMR;
 
-drop table PAYMENT;
 
 create table PAYMENT
 (

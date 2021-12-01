@@ -1,6 +1,8 @@
 USE CASE03_OTMR;
 
 
+drop table MOVIERENTAL;
+
 create table MOVIERENTAL
 (
     MediaID        char(30) not null,
@@ -16,18 +18,20 @@ create table MOVIERENTAL
     RentalRate     char(30) not null,
 
     primary key (MediaID, MovieID, RentalDateTime),
+    foreign key (MediaID) references MEDIA(MediaID),
     foreign key (CustomerID) references CUSTOMER(CustomerID),
     foreign key (EmployeeSIN) references EMPLOYEE(EmployeeSIN),
     foreign key (PaymentID) references PAYMENT(PaymentID),
     foreign key (StatusID) references RENTALSTATUS(StatusID)
+
     
 );
 
 
-USE CASE03_OTMR;
 
-alter table MOVIERENTAL
-    ADD UNIQUE (MediaID);
+
+USE CASE03_OTMR;
+alter table MOVIERENTAL ADD CONSTRAINT MVUI_MEDIAID UNIQUE(MediaID);
 
 alter table MOVIERENTAL
     add constraint MOVIERENTAL___fk
