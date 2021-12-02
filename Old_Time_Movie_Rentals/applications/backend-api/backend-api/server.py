@@ -41,5 +41,5 @@ def hello_world():
 # Required Queries
 @app.route('/required_queries/<query_name>/raw')
 def runq1(query_name):
-    df = pd.read_sql_query(req_query_opt.get(query_name)(), connection)
+    df = pd.read_sql_query(req_query_opt[query_name], connection)
     return df.tail(1000)
