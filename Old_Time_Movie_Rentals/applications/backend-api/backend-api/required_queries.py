@@ -25,15 +25,18 @@ def query5():
 def query6():
     return "use CASE03_OTMR; SELECT CustomerID, CustomerName FROM CUSTOMER WHERE CustomerID NOT IN (SELECT CustomerID FROM MOVIERENTAL) GROUP BY CustomerID;"
 
+# List the total amount received by each payment type, sort by payment description
 def query7():
-    return ""
+    return "select PAYMENTTYPE.Description, sum(PAYMENT.PaymentAmount) as Amount_Received from PAYMENT join PAYMENTTYPE on PAYMENT.PaymentID = PAYMENTTYPE.PaymentID group by PAYMENTTYPE.Description order by PAYMENTTYPE.Description"
 
+# Display the number of movies rented out based on the movie genre, sort by genre
 def query8():
-    return ""
+    return "select MOVIE.Genre, count(genre) as Total_Rented from MOVIERENTAL join MOVIE on MOVIERENTAL.MovieID = MOVIE.MovieID group by MOVIE.Genre order by MOVIE.Genre;"
 
 # List the top 5 customers based on their total payment, and sort in descending order by total payment
 def query9():
     return "use CASE03_OTMR; SELECT CUSTOMER.CustomerName, CUSTOMER.CustomerID, TOTAL_PAYMENT.PaymentAmount FROM CUSTOMER JOIN ( SELECT CustomerID, SUM(PaymentAmount) AS PaymentAmount FROM PAYMENT GROUP BY CustomerID ) AS TOTAL_PAYMENT ON TOTAL_PAYMENT.CustomerID = CUSTOMER.CustomerID ORDER BY TOTAL_PAYMENT.PaymentAmount DESC LIMIT 5 ;"
 
+# List all the managers and the names of the employees they manage. Sort by manager ID then by employee ID
 def query10():
-    return ""
+    return "select e.EmployeeName as Manager, e2.EmployeeName as Employee from EMPLOYEE e, EMPLOYEE e2 where e.ManagerSIN = e.EmployeeSIN order by e.ManagerSIN, e2.EmployeeSIN"
