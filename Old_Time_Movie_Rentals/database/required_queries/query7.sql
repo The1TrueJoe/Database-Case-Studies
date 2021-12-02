@@ -1,4 +1,10 @@
--- query 7: list the toal amount received by each payment, sort by payment description
+/*
+List the total amount received by each payment type, sort by payment description
+*/
+
+/* Specify the schema to user */
+use CASE03_OTMR;
+
 select PAYMENTTYPE.Description, sum(PAYMENT.PaymentAmount) as Amount_Received from PAYMENT
 join PAYMENTTYPE on PAYMENT.PaymentID = PAYMENTTYPE.PaymentID
 group by PAYMENTTYPE.Description
