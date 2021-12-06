@@ -26,17 +26,25 @@ class SideNav extends React.Component {
                   key: 1 /* Key is required, else console throws error. Does this please you Mr. Browser?! */
                 },
                 {
+                    path: '/recenttransactions',
+                    name: 'RecentTransactions',
+                    css: 'fa fa-clock',
+                    key: 2
+
+                }, 
+                {
+                    path: '/requiredqueries',
+                    name: 'RequiredQueries',
+                    css: 'fas fa-hashtag',
+                    key: 3
+                  },
+                {
                   path: '/about',
                   name: 'About',
-                  css: 'fa fa-fw fa-clock',
-                  key: 2
+                  css: 'fa fa-info-circle',
+                  key: 4
                 },
-                {
-                  path: '/NoMatch',
-                  name: 'NoMatch',
-                  css: 'fas fa-hashtag',
-                  key: 3
-                },
+                
               ]
         }
     }
@@ -77,7 +85,7 @@ const StyledNavItem = styled.div`
     margin-bottom: 0;   /* Puts space between NavItems */
     a {
         font-size: 2.7em;
-        color: ${(props) => props.active ? "white" : "#9FFFCB"};
+        color: ${(props) => props.active ? "white" : "#20dde7"};
         :hover {
             opacity: 0.7;
             text-decoration: none; /* Gets rid of underlining of icons */
