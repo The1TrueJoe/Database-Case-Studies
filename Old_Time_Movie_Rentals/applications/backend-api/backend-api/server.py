@@ -70,6 +70,6 @@ def showtable(table_name, visualization_type, display_count):
     return format_output(df, visualization_type)
 
 # Generate a PDF report on the 
-@app.route('/report/<int:query_num')
+@app.route('/report/<int:query_num>')
 def genreport(query_num):
     return ""
