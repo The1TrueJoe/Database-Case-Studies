@@ -13,4 +13,4 @@ These are all of the queries required by the case study.
 7. [List the total amount received by each payment type, sort by payment description](query7.sql) 
 8. [Display the number of movies rented out based on the movie genre, sort by genre](query8.sql) 
 9. [List the top 5 customers based on their total payment, and sort in descending order by total payment](query9.sql) 
-10. [List all the managers and the names of the employees they manage. Sort by manager ID then by employee ID](query19.sql)
+10. [List all the managers and the names of the employees they manage. Sort by manager ID then by employee ID](query10.sql)
