@@ -33,6 +33,25 @@ req_query_opt = {
 
 }
 
+# Format query output
+def format_output(df, visualization_type):
+    # Raw text format
+    if (visualization_type == "raw"):
+        return df.tail(1000)
+
+    # Excel format
+    elif (visualization_type == "excel"):
+        return df.to_excel
+
+    # Comma Separated Values format
+    elif (visualization_type == "csv"):
+        return df.to_csv
+
+    # Default raw text format
+    else:
+        return df.tail(1000)
+
+
 # Front Page
 @app.route('/')
 def hello_world():
@@ -40,20 +59,17 @@ def hello_world():
 
 # Required Queries
 @app.route('/required_queries/<int:query_num>/<visualization_type>')
-def runq1(query_num, visualization_type):
-    if (visualization_type == "raw"):
-        df = pd.read_sql_query(req_query_opt[query_num], connection)
-        return df.tail(1000)
+def runreqquery(query_num, visualization_type):
+    df = pd.read_sql_query(req_query_opt[query_num], connection)
+    return format_output(df, visualization_type)
 
-    elif (visualization_type == "excel"):
-        df = pd.read_sql_query(req_query_opt[query_num], connection)
-        return df.to_excel
+# Table view
+@app.route('/table_view/<table_name>/<visualization_type>/<int:display_count>')
+def showtable(table_name, visualization_type, display_count):
+    df = pd.read_sql_query('SELECT * FROM ' + table_name + ' LIMIT ' + str(display_count) + ';', connection)
+    return format_output(df, visualization_type)
 
-    elif (visualization_type == "csv"):
-        df = pd.read_sql_query(req_query_opt[query_num], connection)
-        return df.to_csv
-
-    else:
-        df = pd.read_sql_query(req_query_opt[query_num], connection)
-        return df.tail(1000)
-    
+# Generate a PDF report on the 
+@app.route('/report/<int:query_num')
+def genreport(query_num):
+    return ""
