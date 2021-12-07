@@ -1,14 +1,33 @@
+#
+#
+#
+#
+#
+
 from flask import Flask
 import pymysql
 import pandas as pd
 import required_queries as rquery
 
-# SQL
+# SQL Connection (Localhost)
+# schema = "OTMR"
+# connection = pymysql.connect(
+#     host = "127.0.0.1",
+#     user = "joseph",
+#     password = "Passw0rd!",
+#     database = schema,
+#     charset = "utf8mb4",
+#     cursorclass = pymysql.cursors.DictCursor
+
+# )
+
+# SQL Connection (Classroom database)
+schema = "CASE03_OTMR"
 connection = pymysql.connect(
-    host = "127.0.0.1",
-    user = "joseph",
-    password = "Passw0rd!",
-    database = "OTMR",
+    host = "10.1.11.26",
+    user = "jtelaak",
+    password = "password",
+    database = schema,
     charset = "utf8mb4",
     cursorclass = pymysql.cursors.DictCursor
 
@@ -18,6 +37,7 @@ connection = pymysql.connect(
 app = Flask(__name__)
 
 # Required Query Map
+rquery.schema = schema
 req_query_opt = {
         1: rquery.query1,    # List the last names of all customers who are now renting
         2: rquery.query2,    # List all the customers who lie in UpTown. List their name and address sorted by name
