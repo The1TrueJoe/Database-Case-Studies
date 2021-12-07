@@ -4,7 +4,16 @@ layout = [ [sg.Text("Welcome to the cashier app for OTMR, this is where you will
            [sg.Text("Customer ID. This can be found on the back of their card."), sg.Input(key='CustomerID')],
            [sg.Text("Movie ID. This can be found on the back of the DVD box"), sg.Input(key='MovieID')],
            [sg.Text("Please enter your storeID, a reference sheet should be on the side of your computer"), sg.Input(key="StoreID")],
-           [sg.Text("Please enter your EmployeeID"), sg.Input(key="EmployeeID")]
+           [sg.Text("Please enter your EmployeeID"), sg.Input(key="EmployeeID")],
+           [sg.Button('Checkout'), sg.Button('Close')]
     ]
 
 window = sg.Window('OTMER Cashier app', layout).Finalize()
+
+while True:
+    event, values = window.read()
+    if event == sg.WIN_CLOSED or event == 'Close':
+        break
+    if event == "Checkout":
+        print ("Code still in progress")
+window.close()
