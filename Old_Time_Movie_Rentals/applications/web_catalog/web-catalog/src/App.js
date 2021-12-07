@@ -6,8 +6,8 @@ import { NavigationBar } from './components/NavigationBar';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { NoMatch } from './pages/NoMatch';
-import { RecentTransactions } from './pages/RecentTransactions';
-import { RequiredQueries } from './pages/RequiredQueries';
+import { Rentals } from './pages/Rentals';
+import { Reports } from './pages/Reports';
 import Sidebar from './components/Sidebar';
 
 function App() {
@@ -21,8 +21,8 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/about" component={About} />
-          <Route path="/recenttransactions" component={RecentTransactions} />
-          <Route path="/requiredqueries" component={RequiredQueries} />
+          <Route path="/rentals" component={Rentals} />
+          <Route path="/reports" component={Reports} />
           <Route component={NoMatch} />
         </Switch>
       </Router>
