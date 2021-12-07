@@ -80,12 +80,14 @@ def hello_world():
 # Required Queries
 @app.route('/required_queries/<int:query_num>/<visualization_type>')
 def runreqquery(query_num, visualization_type):
+    print("Running required query " + query_num + " outputing as " + visualization_type)
     df = pd.read_sql_query(req_query_opt[query_num], connection)
     return format_output(df, visualization_type)
 
 # Table view
 @app.route('/table_view/<table_name>/<visualization_type>/<int:display_count>')
 def showtable(table_name, visualization_type, display_count):
+    print("Viewing table " + table_name + " outputing as " + visualization_type + " printing " + display_count + "rows")
     df = pd.read_sql_query('SELECT * FROM ' + table_name + ' LIMIT ' + str(display_count) + ';', connection)
     return format_output(df, visualization_type)
 
