@@ -14,7 +14,7 @@ export const Rentals = () => (
       <br></br>
     </div>
     <div>
-      <embed src='localhost:5000/required_queries/5/raw' />
+    <iframe width="1000" height="500" src="http://127.0.0.1:5000/required_queries/1/raw"></iframe>
     </div>
   </Wrapper>
   
