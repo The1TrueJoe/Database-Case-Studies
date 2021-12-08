@@ -11,24 +11,22 @@ import required_queries as rquery
 import logging
 
 # SQL Connection (Localhost)
-# schema = "OTMR"
 # connection = pymysql.connect(
 #     host = "127.0.0.1",
 #     user = "joseph",
 #     password = "Passw0rd!",
-#     database = schema,
+#     database = "OTMR",
 #     charset = "utf8mb4",
 #     cursorclass = pymysql.cursors.DictCursor
-
+#
 # )
 
 # SQL Connection (Classroom database)
-schema = "CASE03_OTMR"
 connection = pymysql.connect(
     host = "10.1.11.26",
     user = "jtelaak",
     password = "password",
-    database = schema,
+    database = "CASE03_OTMR",
     charset = "utf8mb4",
     cursorclass = pymysql.cursors.DictCursor
 
@@ -43,7 +41,6 @@ app.logger.addHandler(handler)             # Add it to the built-in logger
 app.logger.setLevel(logging.DEBUG)         # Set the log level to debug
 
 # Required Query Map
-rquery.schema = schema
 req_query_opt = {
         1: rquery.query1,    # List the last names of all customers who are now renting
         2: rquery.query2,    # List all the customers who lie in UpTown. List their name and address sorted by name
@@ -59,25 +56,6 @@ req_query_opt = {
 
 }
 
-# Format query output
-def format_output(df, visualization_type):
-    # Raw text format
-    if (visualization_type == "raw"):
-        return df.tail(1000)
-
-    # Excel format
-    elif (visualization_type == "excel"):
-        return df.to_excel
-
-    # Comma Separated Values format
-    elif (visualization_type == "csv"):
-        return df.to_csv
-
-    # Default raw text format
-    else:
-        return df.tail(1000)
-
-
 # Front Page
 @app.route('/')
 def hello_world():
@@ -86,16 +64,36 @@ def hello_world():
 # Required Queries
 @app.route('/required_queries/<int:query_num>/<visualization_type>')
 def runreqquery(query_num, visualization_type):
-    app.logger.info("Running required query " + query_num + " outputing as " + visualization_type)
+    # Log
+    app.logger.info("Running required query " + str(query_num) + " outputing as " + visualization_type)
+
+    # Dataframe
     df = pd.read_sql_query(req_query_opt[query_num], connection)
-    return format_output(df, visualization_type)
+    
+    # Raw text format
+    if (visualization_type == "raw"):
+        return str(df.tail(1000))
+
+    # Default raw text format
+    else:
+        return str(df.tail(1000))
 
 # Table view
 @app.route('/table_view/<table_name>/<visualization_type>/<int:display_count>')
 def showtable(table_name, visualization_type, display_count):
-    app.logger.info("Viewing table " + table_name + " outputing as " + visualization_type + " printing " + display_count + "rows")
+    # Log
+    app.logger.info("Viewing table " + table_name + " outputing as " + visualization_type + " printing " + str(display_count) + "rows")
+    
+    # Datafram
     df = pd.read_sql_query('SELECT * FROM ' + table_name + ' LIMIT ' + str(display_count) + ';', connection)
-    return format_output(df, visualization_type)
+    
+    # Raw text format
+    if (visualization_type == "raw"):
+        return str(df.tail(1000))
+
+    # Default raw text format
+    else:
+        return str(df.tail(1000))
 
 # Generate a PDF report on the 
 @app.route('/report/<int:query_num>')
