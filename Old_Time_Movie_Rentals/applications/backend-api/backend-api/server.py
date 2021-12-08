@@ -8,6 +8,7 @@ from flask import Flask
 import pymysql
 import pandas as pd
 import required_queries as rquery
+import logging
 
 # SQL Connection (Localhost)
 # schema = "OTMR"
@@ -35,6 +36,11 @@ connection = pymysql.connect(
 
 # Flask
 app = Flask(__name__)
+
+# Logging
+handler = logging.FileHandler("test.log")  # Create the file logger
+app.logger.addHandler(handler)             # Add it to the built-in logger
+app.logger.setLevel(logging.DEBUG)         # Set the log level to debug
 
 # Required Query Map
 rquery.schema = schema
@@ -80,14 +86,14 @@ def hello_world():
 # Required Queries
 @app.route('/required_queries/<int:query_num>/<visualization_type>')
 def runreqquery(query_num, visualization_type):
-    print("Running required query " + query_num + " outputing as " + visualization_type)
+    app.logger.info("Running required query " + query_num + " outputing as " + visualization_type)
     df = pd.read_sql_query(req_query_opt[query_num], connection)
     return format_output(df, visualization_type)
 
 # Table view
 @app.route('/table_view/<table_name>/<visualization_type>/<int:display_count>')
 def showtable(table_name, visualization_type, display_count):
-    print("Viewing table " + table_name + " outputing as " + visualization_type + " printing " + display_count + "rows")
+    app.logger.info("Viewing table " + table_name + " outputing as " + visualization_type + " printing " + display_count + "rows")
     df = pd.read_sql_query('SELECT * FROM ' + table_name + ' LIMIT ' + str(display_count) + ';', connection)
     return format_output(df, visualization_type)
 
