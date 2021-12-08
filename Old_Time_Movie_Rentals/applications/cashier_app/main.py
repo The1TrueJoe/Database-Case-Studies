@@ -35,8 +35,15 @@ StatusArray = []
 def debit_credit_processing():
     # Generating alpha mumeric string for the new payment statusID
     S = 5  
-    StatusID = ''.join(random.choices(string.ascii_uppercase + string.digits, k = S))    
-    sql = "INSERT INTO customers (name, address) VALUES (%s, %s)"
+    StatusID = ''.join(random.choices(string.ascii_uppercase + string.digits, k = S))
+
+    # Inserting new payment status in PAYMENTSTATUS
+    sql = "INSERT INTO RENTALSTATUS (StatusID, Description) VALUES (%s, %s)"
+    val = (StatusID, "Payment Approved")
+    mycursor.execute(sql, val)
+    connection.commit()
+
+    # Creating new window so that the employee can enter other neccassry information
     layout = [[sg.Text("CustomerID"), sg.Input(key='CustomerID')],
               [sg.Text("EmployeeSIN"), sg.Input(key='EmployeeSIN')],
               [sg.Text("Amount paid"), sg.Input(key='Amount')],
@@ -52,7 +59,43 @@ def debit_credit_processing():
         if event == sg.WIN_CLOSED or event == "close":
             break
         if event == "debit":
-            pass
+            # Putting things into PAYMENT
+            sql = "INSERT INTO PAYMENT (CustomerID, StatusID, PaymentID, EmployeeSIN, PaymentAmount, PaymentDateTime) VALUES (%s, %s, %s, %s, %s, %s)"
+            val = (values["CustomerID"], StatusID, PaymentID, values["EmployeeSIN"], values["Amount"], values["Date"])
+            mycursor.execute(sql, val)
+            connection.commit()
+
+            # Inserting things into PAYMENTTYPE
+            sqlDebitPaymentType = "INSERT INTO PAYMENTTYPE (PaymentID, Description) VALUES (%s, %s)"
+            val = (PaymentID, "Approved Debit Card Payment")
+            mycursor.execute(sqlDebitPaymentType, val)
+            connection.commit()
+
+            # Inserting into the DEBIT table
+            sqlDebit = "INSERT INTO DEBITCARD (PaymentID, DebitCardNumber, DebitCardType, DebitCardExpiry) VALUES (%s, %s, %s, %s)"
+            val = (PaymentID, values["CardNumber"], values["CardType"], values["Expire"])
+            mycursor.execute(sqlDebit, val)
+            connection.commit()
+
+        if event == "credit":
+            # Putting things into PAYMENT
+            sql = "INSERT INTO PAYMENT (CustomerID, StatusID, PaymentID, EmployeeSIN, PaymentAmount, PaymentDateTime) VALUES (%s, %s, %s, %s, %s, %s)"
+            val = (values["CustomerID"], StatusID, PaymentID, values["EmployeeSIN"], values["Amount"], values["Date"])
+            mycursor.execute(sql, val)
+            connection.commit()
+
+            # Inserting things into PAYMENTTYPE
+            sqlCreditPaymentType = "INSERT INTO PAYMENTTYPE (PaymentID, Description) VALUES (%s, %s)"
+            val = (PaymentID, "Approved Credit Card Payment")
+            mycursor.execute(sqlDebitPaymentType, val)
+            connection.commit()
+
+            # Inserting into the CREDIT table
+            sqlCredit = "INSERT INTO CREDITCARD (PaymentID, DebitCardNumber, DebitCardType, DebitCardExpiry) VALUES (%s, %s, %s, %s)"
+            val = (PaymentID, values["CardNumber"], values["CardType"], values["Expire"])
+            mycursor.execute(sqlDebit, val)
+            connection.commit()
+            
     window.close()
         
     
@@ -61,11 +104,13 @@ def cash_processing():
     # Generating alpha numeric string for the new Payment statusID
     S = 5  
     StatusID = ''.join(random.choices(string.ascii_uppercase + string.digits, k = S))    
-    sql = "INSERT INTO customers (name, address) VALUES (%s, %s)"
+    sql = "INSERT INTO RENTALSTATUS (StatusID, Description) VALUES (%s, %s)"
+    
     # Inserting new payment status in PAYMENTSTATUS table
     val = (StatusID, "Payment Approved")
     mycursor.execute(sql, val)
     connection.commit()
+    
     # Creating new window so that the employee can enter customer info, their info, amount, and date of payment
     layout = [[sg.Text("CustomerID"), sg.Input(key='CustomerID')],
               [sg.Text("EmployeeSIN"), sg.Input(key='EmployeeSIN')],
@@ -73,6 +118,7 @@ def cash_processing():
               [sg.Text("Date please enter in yyyy-mm-dd format"), sg.Input(key='Date')],
               [sg.Button('close')],
               [sg.Button('submit')]]
+    
     #Creating alphanumeri paymentID
     S = 11
     PaymentID = ''.join(random.choices(string.ascii_uppercase + string.digits, k = S))
@@ -83,13 +129,20 @@ def cash_processing():
             break
         # Inserting the data into the payment table after submit button is hit
         if event == "submit":
+            # Putting things into PAYMENT
             sql = "INSERT INTO PAYMENT (CustomerID, StatusID, PaymentID, EmployeeSIN, PaymentAmount, PaymentDateTime) VALUES (%s, %s, %s, %s, %s, %s)"
             val = (values["CustomerID"], StatusID, PaymentID, values["EmployeeSIN"], values["Amount"], values["Date"])
             mycursor.execute(sql, val)
             connection.commit()
-            sqlCash = "INSERT INTO (PaymentID, Description) VALUES (%s, %s)"
-            val = (PaymentID, "CASH PAYMENT")
+            #Inserting things into PAYMENTTYPE
+            sqlCash = "INSERT INTO PAYMENTTYPE (PaymentID, Description) VALUES (%s, %s)"
+            val = (PaymentID, "Cash Paymenet")
             mycursor.execute(sqlCash, val)
+            connection.commit()
+            # Inserting into CASH
+            sql = "INSERT INTO CASH (PaymentID, Description) VALUES (%s, %s)"
+            val = (PaymentID, "CASH PAYMENT")
+            mycursor.execute(sql, val)
             connection.commit()
         window.close()
 
