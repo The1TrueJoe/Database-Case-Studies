@@ -98,6 +98,14 @@ def getAvailable():
     # Run query
     return queryaspdf(query=mquery.list_available_movies, filename='available')
 
+@app.route('/rentals')
+def getRentals():
+    # Log
+    app.logger.info("Requesting all rentals")
+
+    # Run query
+    return queryaspdf(query=mquery.get_all_rentals, filename='rentals')
+
 # Required Queries
 @app.route('/required_queries/<int:query_num>/<visualization_type>')
 def runreqquery(query_num, visualization_type):
