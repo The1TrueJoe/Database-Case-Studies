@@ -5,3 +5,5 @@
 use_statement = ""
 
 list_available_movies = use_statement + "SELECT * FROM MOVIE WHERE MOVIE.MovieID NOT IN (SELECT MovieID FROM MOVIERENTAL);"
+
+get_all_rentals = use_statement + "SELECT * FROM RENTALS;"

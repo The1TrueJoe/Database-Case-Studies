@@ -4,7 +4,17 @@
 # Handles to connection to the SQL server and generates report documents
 # 
 # Uses Flask
+#
+# Structure:
+# / -> home page
+# /available -> list available movies
+# /rentals -> displays rental info
+# /required_queries -> all required queries
+# /table_views -> displays all tables
+#
+#
 
+# Imports
 from flask import Flask
 from flask.helpers import send_from_directory
 import pymysql
@@ -97,6 +107,14 @@ def getAvailable():
 
     # Run query
     return queryaspdf(query=mquery.list_available_movies, filename='available')
+
+@app.route('/rentals')
+def getRentals():
+    # Log
+    app.logger.info("Requesting all rentals")
+
+    # Run query
+    return queryaspdf(query=mquery.get_all_rentals, filename='rentals')
 
 # Required Queries
 @app.route('/required_queries/<int:query_num>/<visualization_type>')

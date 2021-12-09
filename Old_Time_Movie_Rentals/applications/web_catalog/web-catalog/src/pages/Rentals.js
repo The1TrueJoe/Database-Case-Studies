@@ -1,4 +1,4 @@
-// Rentals page
+// Available page
 //
 // Implemented by Joseph Telaak
 
@@ -16,12 +16,13 @@ const Wrapper = styled.div`
 export const Rentals = () => (
   <Wrapper>
     <div>
-      <h2>Rentals</h2>
+      <h2>Recent Rentals</h2>
+      <p>Shows recent rental transactions</p>
       <br></br>
     </div>
     <div>
       {/* CHANGE IP HERE*/}
-      <iframe width="1500" height="1000" src="http://127.0.0.1:5000/available"></iframe>
+      <iframe width="1500" height="1000" src="http://127.0.0.1:5000/rentals"></iframe>
     </div>
   </Wrapper>
   
