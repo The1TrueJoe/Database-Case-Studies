@@ -28,6 +28,9 @@ export const Reports = () => (
       <br></br>
     </div>
     <div>
+
+      {/* CHANGE IP HERE*/}
+
       <Styles>
         <Button variant="primary" href="http://127.0.0.1:5000/required_queries/1/pdf">List the last names of all customers who are now renting</Button>
       </Styles>
