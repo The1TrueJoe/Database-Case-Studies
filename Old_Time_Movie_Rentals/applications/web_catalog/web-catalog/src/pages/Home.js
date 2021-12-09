@@ -18,6 +18,8 @@ export const Home = (props) => (
     <div>
         <h1>WELCOME</h1>
         <h2>Welcome to the home page of the web app. On this web app you can find reports for all of the 10 engineered queries. This database solution was designed by JAB solutions</h2>
+        <br></br>
+        <a href="https://github.com/The1TrueJoe/Database-Case-Studies/tree/main/Old_Time_Movie_Rentals">See our GitHub repository</a>
     </div>
   </Wrapper>
 )
