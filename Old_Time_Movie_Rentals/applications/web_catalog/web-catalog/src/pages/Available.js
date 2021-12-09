@@ -1,4 +1,4 @@
-// Rentals page
+// Available page
 //
 // Implemented by Joseph Telaak
 
@@ -13,10 +13,10 @@ const Wrapper = styled.div`
 `;
 
 // Return page
-export const Renters = () => (
+export const Available = () => (
   <Wrapper>
     <div>
-      <h2>Renters</h2>
+      <h2>Available</h2>
       <br></br>
     </div>
     <div>

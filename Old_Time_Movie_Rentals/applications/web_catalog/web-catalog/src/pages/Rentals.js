@@ -1,4 +1,4 @@
-// Rentals page
+// Available page
 //
 // Implemented by Joseph Telaak
 

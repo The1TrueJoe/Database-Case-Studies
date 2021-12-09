@@ -6,10 +6,10 @@ import { NavigationBar } from './components/NavigationBar';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { NoMatch } from './pages/NoMatch';
-import { Rentals } from './pages/Rentals';
+import { Available } from './pages/Available';
 import { Reports } from './pages/Reports';
 import { Tables } from './pages/Tables';
-import { Renters } from './pages/Renters';
+import { Rentals } from './pages/Rentals';
 import Sidebar from './components/Sidebar';
 
 // Main app for the OTMR app
@@ -33,10 +33,10 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/about" component={About} />
-          <Route path="/rentals" component={Rentals} />
+          <Route path="/Available" component={Available} />
           <Route path="/reports" component={Reports} />
           <Route path="/tables" component={Tables} />
-          <Route path="/renters" component={Renters} />
+          <Route path="/Rentals" component={Rentals} />
           <Route component={NoMatch} />
         </Switch>
       </Router>
