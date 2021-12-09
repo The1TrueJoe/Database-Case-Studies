@@ -20,7 +20,7 @@ export const Rentals = () => (
       <br></br>
     </div>
     <div>
-    <iframe width="1500" height="1000" src="http://127.0.0.1:5000/required_queries/1/pdf"></iframe>
+    <iframe width="1500" height="1000" src="http://127.0.0.1:5000/available"></iframe>
     </div>
   </Wrapper>
   
