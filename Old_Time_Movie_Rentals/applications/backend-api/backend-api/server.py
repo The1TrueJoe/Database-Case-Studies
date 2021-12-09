@@ -9,10 +9,13 @@ from flask import Flask
 from flask.helpers import send_from_directory
 import pymysql
 import pandas as pd
-import required_queries as rquery
 import logging
 import pdfkit
 import os
+
+# Local imports
+import required_queries as rquery
+import misc_queries as mquery
 
 # SQL Connection (Localhost)
 # connection = pymysql.connect(
@@ -85,6 +88,15 @@ def queryaspdf(query, filename):
 @app.route('/')
 def hello_world():
     return "<head><title> OTMR API </title> Welcome to the OTMR API!</head>"
+
+# Available movies
+@app.route('/available')
+def getAvailable():
+    # Log
+    app.logger.info("Running query to check movie availability")
+
+    # Run query
+    return queryaspdf(query=mquery.list_available_movies, filename='available')
 
 # Required Queries
 @app.route('/required_queries/<int:query_num>/<visualization_type>')
