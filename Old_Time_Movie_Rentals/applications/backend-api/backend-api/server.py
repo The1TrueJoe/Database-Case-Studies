@@ -1,14 +1,18 @@
+# OTMR's Backend API
+# Written by Joseph Telaak, JAB Web Developer
 #
-#
-#
-#
-#
+# Handles to connection to the SQL server and generates report documents
+# 
+# Uses Flask
 
 from flask import Flask
+from flask.helpers import send_from_directory
 import pymysql
 import pandas as pd
 import required_queries as rquery
 import logging
+import pdfkit
+import os
 
 # SQL Connection (Localhost)
 # connection = pymysql.connect(
@@ -35,6 +39,11 @@ connection = pymysql.connect(
 # Flask
 app = Flask(__name__)
 
+# Reports Location
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config["REPORTS_LOC"] = os.path.join(basedir, 'static/reports/')
+
+
 # Logging
 handler = logging.FileHandler("test.log")  # Create the file logger
 app.logger.addHandler(handler)             # Add it to the built-in logger
@@ -56,6 +65,22 @@ req_query_opt = {
 
 }
 
+# Get as PDF
+def queryaspdf(query, filename):
+    # HTML File
+    htmldoc = app.config["REPORTS_LOC"] + filename + '.html'
+
+    # Get query as HTML
+    df = pd.read_sql_query(query, connection)
+    df.to_html(htmldoc)
+    
+    # Convert to PDF
+    pdfkit.from_file(htmldoc, app.config["REPORTS_LOC"] + filename + '.pdf')
+    
+    # Return file
+    return send_from_directory(app.config["REPORTS_LOC"], path = filename + '.pdf', as_attachment=False)
+
+
 # Front Page
 @app.route('/')
 def hello_world():
@@ -66,17 +91,22 @@ def hello_world():
 def runreqquery(query_num, visualization_type):
     # Log
     app.logger.info("Running required query " + str(query_num) + " outputing as " + visualization_type)
-
-    # Dataframe
-    df = pd.read_sql_query(req_query_opt[query_num], connection)
     
     # Raw text format
     if (visualization_type == "raw"):
-        return str(df.tail(1000))
+        # Dataframe
+        df = pd.read_sql_query(req_query_opt[query_num], connection)
+        return df.to_string()
+
+    # PDF Format
+    elif (visualization_type == "pdf"):
+        return queryaspdf(query=req_query_opt[query_num], filename = 'report' + str(query_num))
 
     # Default raw text format
     else:
-        return str(df.tail(1000))
+        # Dataframe
+        df = pd.read_sql_query(req_query_opt[query_num], connection)
+        return df.to_string()
 
 # Table view
 @app.route('/table_view/<table_name>/<visualization_type>/<int:display_count>')
@@ -84,18 +114,21 @@ def showtable(table_name, visualization_type, display_count):
     # Log
     app.logger.info("Viewing table " + table_name + " outputing as " + visualization_type + " printing " + str(display_count) + "rows")
     
-    # Datafram
-    df = pd.read_sql_query('SELECT * FROM ' + table_name + ' LIMIT ' + str(display_count) + ';', connection)
-    
+    # Query
+    query = 'SELECT * FROM ' + table_name + ' LIMIT ' + str(display_count) + ';'
+
     # Raw text format
     if (visualization_type == "raw"):
-        return str(df.tail(1000))
+        # Dataframe
+        df = pd.read_sql_query(query, connection)
+        return df.to_string()
+
+    # PDF Format
+    elif (visualization_type == "pdf"):
+        return queryaspdf(query=query, filename = 'table' + table_name)
 
     # Default raw text format
     else:
-        return str(df.tail(1000))
-
-# Generate a PDF report on the 
-@app.route('/report/<int:query_num>')
-def genreport(query_num):
-    return ""
+        # Dataframe
+        df = pd.read_sql_query(query, connection)
+        return df.to_string()

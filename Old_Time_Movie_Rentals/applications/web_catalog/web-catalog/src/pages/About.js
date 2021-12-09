@@ -1,12 +1,18 @@
+// About page
+//
+// Implemented by Joseph Telaak
+
 import React from 'react';
 import styled from 'styled-components';
 
+// Wrapper style
 const Wrapper = styled.div`
   margin-top: 1em;
   margin-left: 6em;
   margin-right: 6em;
 `;
 
+// Return about page
 export const About = () => (
   <Wrapper>
     <div>

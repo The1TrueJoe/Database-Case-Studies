@@ -1,7 +1,12 @@
+// Navigation sidebar for OTMR app
+//
+// Implemented by Joseph Telaak
+
 import React from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
 
+// Style
 const StyledSideNav = styled.div`   
     position: fixed;     /* Fixed Sidebar (stay in place on scroll and position relative to viewport) */
     height: 100%;
@@ -13,7 +18,10 @@ const StyledSideNav = styled.div`
     padding-top: 10px;
 `;
 
+// Side navigation
 class SideNav extends React.Component {
+    // List of items
+    // Include new items here
     constructor(props) {
         super(props);
         this.state = {
@@ -49,12 +57,18 @@ class SideNav extends React.Component {
         }
     }
 
+    // Handle clicks
     onItemClick = (path) => {
         this.setState({ activePath: path });
+
     }
 
+    // Render the bar
     render() {
+        // State variables
         const { items, activePath } = this.state;
+        
+        // Return icons and links
         return(
             <StyledSideNav>
                 {
@@ -78,6 +92,7 @@ class SideNav extends React.Component {
 
 const RouterSideNav = withRouter(SideNav);
 
+// Navigation item style
 const StyledNavItem = styled.div`
     height: 70px;
     width: 75px; /* width must be same size as NavBar to center */
@@ -94,13 +109,19 @@ const StyledNavItem = styled.div`
 `;
 
 class NavItem extends React.Component {
+    // Handle clicks
     handleClick = () => {
         const { path, onItemClick } = this.props;
         onItemClick(path);
+
     }
 
+    // Render the item
     render() {
+        // Props
         const { active } = this.props;
+        
+        // Return links
         return(
             <StyledNavItem active={active}>
                 <Link to={this.props.path} className={this.props.css} onClick={this.handleClick}>
@@ -108,17 +129,21 @@ class NavItem extends React.Component {
                 </Link>
             </StyledNavItem>
         );
+
     }
 }
 
+// Navigation icon style
 const NavIcon = styled.div`
 
 `;
 
+// Sidebar class
 export default class Sidebar extends React.Component {
     render() {
         return (
             <RouterSideNav></RouterSideNav>
         );
+
     }
 }

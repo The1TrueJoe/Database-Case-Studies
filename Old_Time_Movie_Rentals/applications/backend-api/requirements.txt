@@ -1,3 +1,5 @@
 flask
 pymysql
 pandas
+pdfkit
+logging
