@@ -74,16 +74,21 @@ def hello_world():
 def runreqquery(query_num, visualization_type):
     # Log
     app.logger.info("Running required query " + str(query_num) + " outputing as " + visualization_type)
-
-    # Dataframe
-    df = pd.read_sql_query(req_query_opt[query_num], connection)
     
     # Raw text format
     if (visualization_type == "raw"):
+        # Dataframe
+        df = pd.read_sql_query(req_query_opt[query_num], connection)
         return str(df.tail(1000))
+
+    # PDF Format
+    elif (visualization_type == "pdf"):
+        return queryaspdf(query=req_query_opt[query_num], filename = 'report' + str(query_num))
 
     # Default raw text format
     else:
+        # Dataframe
+        df = pd.read_sql_query(req_query_opt[query_num], connection)
         return str(df.tail(1000))
 
 # Table view
@@ -92,25 +97,36 @@ def showtable(table_name, visualization_type, display_count):
     # Log
     app.logger.info("Viewing table " + table_name + " outputing as " + visualization_type + " printing " + str(display_count) + "rows")
     
-    # Datafram
-    df = pd.read_sql_query('SELECT * FROM ' + table_name + ' LIMIT ' + str(display_count) + ';', connection)
-    
+    # Query
+    query = 'SELECT * FROM ' + table_name + ' LIMIT ' + str(display_count) + ';'
+
     # Raw text format
     if (visualization_type == "raw"):
+        # Dataframe
+        df = pd.read_sql_query(query, connection)
         return str(df.tail(1000))
+
+    # PDF Format
+    elif (visualization_type == "pdf"):
+        return queryaspdf(query=query, filename = 'table' + table_name)
 
     # Default raw text format
     else:
+        # Dataframe
+        df = pd.read_sql_query(query, connection)
         return str(df.tail(1000))
 
-# Generate a PDF report on the 
-@app.route('/report/<int:query_num>')
-def genreport(query_num):
-    htmldoc = app.config["REPORTS_LOC"] + 'report' + str(query_num) + '.html'
+# Get as PDF
+def queryaspdf(query, filename):
+    # HTML File
+    htmldoc = app.config["REPORTS_LOC"] + filename + '.html'
 
-    df=pd.read_sql_query(req_query_opt[query_num], connection)
+    # Get query as HTML
+    df = pd.read_sql_query(query, connection)
     df.to_html(htmldoc)
     
-    pdfkit.from_file(htmldoc, app.config["REPORTS_LOC"] + 'report' + str(query_num) + '.pdf')
+    # Convert to PDF
+    pdfkit.from_file(htmldoc, app.config["REPORTS_LOC"] + filename + '.pdf')
     
-    return send_from_directory(app.config["REPORTS_LOC"], path = 'report' + str(query_num) + '.pdf', as_attachment=False)
+    # Return file
+    return send_from_directory(app.config["REPORTS_LOC"], path = filename + '.pdf', as_attachment=False)
