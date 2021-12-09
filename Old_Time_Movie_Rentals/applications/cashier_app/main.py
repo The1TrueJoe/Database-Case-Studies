@@ -87,7 +87,9 @@ def main():
             val = (values["MediaID"], values["CustomerID"], StatusIDRental, values["MovieID"], values["StoreID"], values["EmployeeSIN"], PaymentID, values["Date"], values["Return"], 0, int(values["Rate"]))
             mycursor.execute(sqlMovieRental, val)
             connection.commit()
-            break
+
+            # Clearning all the fields
+            window.FindElement(key).Update('')
 
     window.close()
 
