@@ -9,6 +9,7 @@ import pymysql
 import pandas as pd
 import required_queries as rquery
 import logging
+import pdfkit as pdf
 
 # SQL Connection (Localhost)
 # connection = pymysql.connect(
@@ -98,4 +99,13 @@ def showtable(table_name, visualization_type, display_count):
 # Generate a PDF report on the 
 @app.route('/report/<int:query_num>')
 def genreport(query_num):
-    return ""
+    htmldoc = '~/reports/report' + str(query_num) + '.html'
+    report = '~/reports/report' + str(query_num) + '.pdf'
+
+    df=pd.read_sql_query(req_query_opt[query_num], connection)
+    df.to_html(htmldoc)
+    
+    pdf.from_file(htmldoc, report)
+    
+    with open(report, 'rb') as static_file:
+        return Flask.send_file(static_file, attachment_filename='file.pdf')
