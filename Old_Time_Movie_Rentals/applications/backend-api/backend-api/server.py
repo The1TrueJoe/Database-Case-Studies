@@ -127,7 +127,7 @@ def showtable(table_name, visualization_type, display_count):
     app.logger.info("Viewing table " + table_name + " outputing as " + visualization_type + " printing " + str(display_count) + "rows")
     
     # Query
-    query = 'SELECT * FROM ' + table_name + ' LIMIT ' + str(display_count) + ';'
+    query = 'SELECT * FROM ' + str(table_name).upper() + ' LIMIT ' + str(display_count) + ';'
 
     # Raw text format
     if (visualization_type == "raw"):
