@@ -10,14 +10,24 @@ import { Rentals } from './pages/Rentals';
 import { Reports } from './pages/Reports';
 import Sidebar from './components/Sidebar';
 
+// Main app for the OTMR app
+//
+// Written by Joseph Telaak
+
 function App() {
   return (
     <React.Fragment>
       <Router>
+        {/* Include top navigation bar */}
         <NavigationBar />
 
+        {/* Include side navigation bar */}
         <Sidebar />
 
+        {/* 
+          Routing 
+          --- Add new menu icons here ---  
+        */}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/about" component={About} />
