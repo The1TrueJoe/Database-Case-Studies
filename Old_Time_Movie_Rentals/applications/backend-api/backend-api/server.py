@@ -1,8 +1,9 @@
+# OTMR's Backend API
+# Written by Joseph Telaak, JAB Web Developer
 #
-#
-#
-#
-#
+# Handles to connection to the SQL server and generates report documents
+# 
+# Uses Flask
 
 from flask import Flask
 from flask.helpers import send_from_directory
