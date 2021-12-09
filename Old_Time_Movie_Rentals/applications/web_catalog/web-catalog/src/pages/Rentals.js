@@ -17,6 +17,7 @@ export const Rentals = () => (
   <Wrapper>
     <div>
       <h2>Rentals</h2>
+      <p>Shows recent rental transactions</p>
       <br></br>
     </div>
     <div>

@@ -24,7 +24,8 @@ const Styles = styled.div`
 export const Reports = () => (
   <Wrapper>
     <div>
-      <h2>Required Queries</h2>
+      <h2>Reports</h2>
+      <p>Generates database reports using various data like transactions or employees</p>
       <br></br>
     </div>
     <div>
