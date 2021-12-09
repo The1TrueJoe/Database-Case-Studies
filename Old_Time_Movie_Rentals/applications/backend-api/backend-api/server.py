@@ -64,6 +64,22 @@ req_query_opt = {
 
 }
 
+# Get as PDF
+def queryaspdf(query, filename):
+    # HTML File
+    htmldoc = app.config["REPORTS_LOC"] + filename + '.html'
+
+    # Get query as HTML
+    df = pd.read_sql_query(query, connection)
+    df.to_html(htmldoc)
+    
+    # Convert to PDF
+    pdfkit.from_file(htmldoc, app.config["REPORTS_LOC"] + filename + '.pdf')
+    
+    # Return file
+    return send_from_directory(app.config["REPORTS_LOC"], path = filename + '.pdf', as_attachment=False)
+
+
 # Front Page
 @app.route('/')
 def hello_world():
@@ -115,18 +131,3 @@ def showtable(table_name, visualization_type, display_count):
         # Dataframe
         df = pd.read_sql_query(query, connection)
         return str(df.tail(1000))
-
-# Get as PDF
-def queryaspdf(query, filename):
-    # HTML File
-    htmldoc = app.config["REPORTS_LOC"] + filename + '.html'
-
-    # Get query as HTML
-    df = pd.read_sql_query(query, connection)
-    df.to_html(htmldoc)
-    
-    # Convert to PDF
-    pdfkit.from_file(htmldoc, app.config["REPORTS_LOC"] + filename + '.pdf')
-    
-    # Return file
-    return send_from_directory(app.config["REPORTS_LOC"], path = filename + '.pdf', as_attachment=False)
