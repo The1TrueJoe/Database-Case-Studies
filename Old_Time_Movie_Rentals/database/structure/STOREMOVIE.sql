@@ -9,4 +9,4 @@ create table STOREMOVIE
     foreign key (MovieID) references MOVIE(MovieID),
     foreign key (StoreID) references STORE(StoreID)
     
-)
+);
