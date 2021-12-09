@@ -24,6 +24,7 @@ mycursor = connection.cursor()
 '''
 
 
+
 # Generating alpha mumeric string for the new payment statusID that is going to be used later in the program and inserted into the database
 S = 5  
 StatusID = ''.join(random.choices(string.ascii_uppercase + string.digits, k = S))
@@ -37,6 +38,9 @@ connection.commit()
 # Generating alpha numeric string for the new payment PaymentID that going to be used throughout the program and then inserted into the database
 S = 11
 PaymentID = ''.join(random.choices(string.ascii_uppercase + string.digits, k = S))
+
+
+
 
 
 
@@ -260,7 +264,7 @@ def payment_window_main():
             check_processing()
             break
     window.close()
-
+            
 
 if __name__ == "__main__":
     payment_window_main()
