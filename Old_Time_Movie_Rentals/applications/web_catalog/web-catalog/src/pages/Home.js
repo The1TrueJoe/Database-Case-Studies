@@ -12,10 +12,18 @@ const Wrapper = styled.div`
   margin-right: 6em;
 `;
 
+.centered{
+    height: 100vh;
+    display: flex;
+    justify - content: center;
+    align - items: center;
+}
+
+
 // Retuen page
 export const Home = (props) => (
-  <Wrapper>
-    <p>This is a paragraph and I am writing on the home page</p>
-    <p>This is another paragraph, hi hey hello whatsup yo</p>
-  </Wrapper>
+  <div class="centered">
+        <h1>WELCOME</h1>
+        <h2>Welcome to the home page of the web app. On this web app you can find reports for all of the 10 engineered queries. This database solution was designed by JAB solutions</h2>
+  </div>
 )
