@@ -5,11 +5,13 @@
 #
 
 from flask import Flask
+from flask.helpers import send_from_directory
 import pymysql
 import pandas as pd
 import required_queries as rquery
 import logging
-import pdfkit as pdf
+import pdfkit
+import os
 
 # SQL Connection (Localhost)
 # connection = pymysql.connect(
@@ -35,6 +37,11 @@ connection = pymysql.connect(
 
 # Flask
 app = Flask(__name__)
+
+# Reports Location
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config["REPORTS_LOC"] = os.path.join(basedir, 'static/reports/')
+
 
 # Logging
 handler = logging.FileHandler("test.log")  # Create the file logger
@@ -99,13 +106,11 @@ def showtable(table_name, visualization_type, display_count):
 # Generate a PDF report on the 
 @app.route('/report/<int:query_num>')
 def genreport(query_num):
-    htmldoc = '~/reports/report' + str(query_num) + '.html'
-    report = '~/reports/report' + str(query_num) + '.pdf'
+    htmldoc = app.config["REPORTS_LOC"] + 'report' + str(query_num) + '.html'
 
     df=pd.read_sql_query(req_query_opt[query_num], connection)
     df.to_html(htmldoc)
     
-    pdf.from_file(htmldoc, report)
+    pdfkit.from_file(htmldoc, app.config["REPORTS_LOC"] + 'report' + str(query_num) + '.pdf')
     
-    with open(report, 'rb') as static_file:
-        return Flask.send_file(static_file, attachment_filename='file.pdf')
+    return send_from_directory(app.config["REPORTS_LOC"], path = 'report' + str(query_num) + '.pdf', as_attachment=False)
