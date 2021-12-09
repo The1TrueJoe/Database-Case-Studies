@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 export const Available = () => (
   <Wrapper>
     <div>
-      <h2>Available</h2>
+      <h2>Rental Availability</h2>
       <p>Displays the available movies to rent</p>
       <br></br>
     </div>
