@@ -95,7 +95,7 @@ def runreqquery(query_num, visualization_type):
     if (visualization_type == "raw"):
         # Dataframe
         df = pd.read_sql_query(req_query_opt[query_num], connection)
-        return str(df.tail(1000))
+        return df.to_string()
 
     # PDF Format
     elif (visualization_type == "pdf"):
@@ -105,7 +105,7 @@ def runreqquery(query_num, visualization_type):
     else:
         # Dataframe
         df = pd.read_sql_query(req_query_opt[query_num], connection)
-        return str(df.tail(1000))
+        return df.to_string()
 
 # Table view
 @app.route('/table_view/<table_name>/<visualization_type>/<int:display_count>')
@@ -120,7 +120,7 @@ def showtable(table_name, visualization_type, display_count):
     if (visualization_type == "raw"):
         # Dataframe
         df = pd.read_sql_query(query, connection)
-        return str(df.tail(1000))
+        return df.to_string()
 
     # PDF Format
     elif (visualization_type == "pdf"):
@@ -130,4 +130,4 @@ def showtable(table_name, visualization_type, display_count):
     else:
         # Dataframe
         df = pd.read_sql_query(query, connection)
-        return str(df.tail(1000))
+        return df.to_string()
