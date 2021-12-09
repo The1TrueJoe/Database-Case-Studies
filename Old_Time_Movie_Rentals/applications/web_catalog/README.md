@@ -4,7 +4,11 @@ Interface for viewing reports, recent transactions, and available rentals.
 
 ## About
 
-This application was written in [React](https://reactjs.org/), a web framework developed by Facebook. It is front-end only, so we have to use a back-end API in order to provide the front end with dynamic data. [See API](https://github.com/The1TrueJoe/Database-Case-Studies/tree/main/Old_Time_Movie_Rentals/applications/backend-api)
+This application was written in [React](https://reactjs.org/), a JavaScript web framework developed by Facebook. It is front-end only, so we to used a Python back-end API using [Flask](https://flask.palletsprojects.com/en/2.0.x/) in order to provide the front end with dynamic data. [See API](https://github.com/The1TrueJoe/Database-Case-Studies/tree/main/Old_Time_Movie_Rentals/applications/backend-api)
+
+## How to start
+
+Start the sever by running ```bash startserver.sh```
 
 ## Pages
 
