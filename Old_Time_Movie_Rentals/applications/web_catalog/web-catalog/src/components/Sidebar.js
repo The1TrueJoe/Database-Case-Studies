@@ -36,21 +36,34 @@ class SideNav extends React.Component {
                 {
                     path: '/rentals',
                     name: 'Rentals',
-                    css: 'fa fa-clock',
+                    css: 'fa fa-film',
                     key: 2
 
                 }, 
                 {
+                    path: '/renters',
+                    name: 'Renters',
+                    css: 'fa fa-clock',
+                    key: 3
+
+                },
+                {
                     path: '/reports',
                     name: 'Reports',
                     css: 'fas fa-hashtag',
-                    key: 3
+                    key: 4
+                },
+                {
+                    path: '/tables',
+                    name: 'Tables',
+                    css: 'fa fa-table',
+                    key: 5
                 },
                 {
                     path: '/about',
                     name: 'About',
                     css: 'fa fa-info-circle',
-                    key: 4
+                    key: 6
                 },
                 
               ]

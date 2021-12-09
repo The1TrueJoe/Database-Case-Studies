@@ -8,6 +8,8 @@ import { About } from './pages/About';
 import { NoMatch } from './pages/NoMatch';
 import { Rentals } from './pages/Rentals';
 import { Reports } from './pages/Reports';
+import { Tables } from './pages/Tables';
+import { Renters } from './pages/Renters';
 import Sidebar from './components/Sidebar';
 
 // Main app for the OTMR app
@@ -33,6 +35,8 @@ function App() {
           <Route path="/about" component={About} />
           <Route path="/rentals" component={Rentals} />
           <Route path="/reports" component={Reports} />
+          <Route path="/tables" component={Tables} />
+          <Route path="/renters" component={Renters} />
           <Route component={NoMatch} />
         </Switch>
       </Router>
