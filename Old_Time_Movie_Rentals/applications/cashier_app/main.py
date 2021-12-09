@@ -49,57 +49,6 @@ CheckoutInformation = []
 
 
 
-
-
-
-# This is the main window that will prompt cashier to enter all the information about the media, customer, and themselves
-def main():
-    layout = [ [sg.Text("Welcome to the cashier app for OTMR, this is where you will rent out movies")],
-               [sg.Text("Customer ID. This can be found on the back of their card."), sg.Input(key='CustomerID')],
-               [sg.Text("Media ID. This can be found on the back of the DVD box"), sg.Input(key='MediaID')],
-               [sg.Text("Movie ID. This can be found on the back of the DVD box"), sg.Input(key='MovieID')],
-               [sg.Text("Please enter your storeID, a reference sheet should be on the side of your computer"), sg.Input(key="StoreID")],
-               [sg.Text("Please enter your EmployeeSIN"), sg.Input(key="EmployeeSIN")],
-               [sg.Text("Please enter the date yyyy-mm-dd format"), sg.Input(key="Date")],
-               [sg.Text("Enter return date, which is 10 days after checkout date"), sg.Input(key="Return")],
-               [sg.Text("Please enter rental rate"), sg.Input(key="Rate")],
-               [sg.Button('Checkout'), sg.Button('Close')]
-        ]
-
-    window = sg.Window('OTMR Cashier app', layout).Finalize()
-
-    while True:
-        event, values = window.read()
-        if event == sg.WIN_CLOSED or event == 'Close':
-            break
-        if event == "Checkout":
-            #Clearing previous values stored in the array
-            CheckoutInformation.clear()
-            
-            #Generating Rental StatusID
-            S = 5  
-            StatusIDRental = ''.join(random.choices(string.ascii_uppercase + string.digits, k = S))
-
-            # Inserting new rental status in RENTALSTATUS
-            sql = "INSERT INTO RENTALSTATUS (StatusID, Description) VALUES (%s, %s)"
-            val = (StatusIDRental, "Rented out on time")
-            mycursor.execute(sql, val)
-            connection.commit()
-            
-            # Storing the values into CheckoutInformation array
-            sqlMovieRental = "INSERT INTO MOVIERENTAL (MediaID, CustomerID, StatusID, MovieID, StoreID, EmployeeSIN, PaymentID, RentalDateTime, DueDate, OverDueCharge, RentalRate) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-            val = (values["MediaID"], values["CustomerID"], StatusIDRental, values["MovieID"], values["StoreID"], values["EmployeeSIN"], PaymentID, values["Date"], values["Return"], 0, int(values["Rate"]))
-            mycursor.execute(sqlMovieRental, val)
-            connection.commit()
-
-            # Clearning all the fields
-            window.FindElement(key).Update('')
-
-    window.close()
-
-
-
-
 # These are the functions that handle the payment processing for the different payment options
 def debit_credit_processing():
     # Creating new window so that the employee can enter other neccassry information
@@ -241,6 +190,53 @@ def check_processing():
     main()
 
 
+def call_new_payment():
+    new_payment()
+  
+
+# This is the main window that will prompt cashier to enter all the information about the media, customer, and themselves
+def main():
+    layout = [ [sg.Text("Welcome to the cashier app for OTMR, this is where you will rent out movies")],
+               [sg.Text("Customer ID. This can be found on the back of their card."), sg.Input(key='CustomerID')],
+               [sg.Text("Media ID. This can be found on the back of the DVD box"), sg.Input(key='MediaID')],
+               [sg.Text("Movie ID. This can be found on the back of the DVD box"), sg.Input(key='MovieID')],
+               [sg.Text("Please enter your storeID, a reference sheet should be on the side of your computer"), sg.Input(key="StoreID")],
+               [sg.Text("Please enter your EmployeeSIN"), sg.Input(key="EmployeeSIN")],
+               [sg.Text("Please enter the date yyyy-mm-dd format"), sg.Input(key="Date")],
+               [sg.Text("Enter return date, which is 10 days after checkout date"), sg.Input(key="Return")],
+               [sg.Text("Please enter rental rate"), sg.Input(key="Rate")],
+               [sg.Button('Checkout'), sg.Button('Close'), sg.Button('New_Transaction')]
+        ]
+
+    window = sg.Window('OTMR Cashier app', layout).Finalize()
+
+    while True:
+        event, values = window.read()
+        if event == sg.WIN_CLOSED or event == 'Close':
+            break
+        if event == "Checkout":
+            #Clearing previous values stored in the array
+            CheckoutInformation.clear()
+            
+            #Generating Rental StatusID
+            S = 5  
+            StatusIDRental = ''.join(random.choices(string.ascii_uppercase + string.digits, k = S))
+
+            # Inserting new rental status in RENTALSTATUS
+            sql = "INSERT INTO RENTALSTATUS (StatusID, Description) VALUES (%s, %s)"
+            val = (StatusIDRental, "Rented out on time")
+            mycursor.execute(sql, val)
+            connection.commit()
+            
+            # Storing the values into CheckoutInformation array
+            sqlMovieRental = "INSERT INTO MOVIERENTAL (MediaID, CustomerID, StatusID, MovieID, StoreID, EmployeeSIN, PaymentID, RentalDateTime, DueDate, OverDueCharge, RentalRate) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            val = (values["MediaID"], values["CustomerID"], StatusIDRental, values["MovieID"], values["StoreID"], values["EmployeeSIN"], PaymentID, values["Date"], values["Return"], 0, int(values["Rate"]))
+            mycursor.execute(sqlMovieRental, val)
+            connection.commit()
+        if event == "New_Transaction":
+            call_new_payment()
+
+    window.close()
 
 # This is the payment window where the caisher will select if the customer is paying with debit/credit, cash or check it will than open another window based on input
 def payment_window_main():
@@ -265,6 +261,25 @@ def payment_window_main():
             break
     window.close()
             
+
+def new_payment():
+
+    # Regenrating the status and payment id
+    # Generating alpha mumeric string for the new payment statusID that is going to be used later in the program and inserted into the database
+    S = 5  
+    StatusID = ''.join(random.choices(string.ascii_uppercase + string.digits, k = S))
+
+    # Inserting new payment status in PAYMENTSTATUS
+    sql = "INSERT INTO PAYMENTSTATUS (StatusID, Description) VALUES (%s, %s)"
+    val = (StatusID, "Payment Approved")
+    mycursor.execute(sql, val)
+    connection.commit()
+
+    # Generating alpha numeric string for the new payment PaymentID that going to be used throughout the program and then inserted into the database
+    S = 11
+    PaymentID = ''.join(random.choices(string.ascii_uppercase + string.digits, k = S))
+    
+    payment_window_main()
 
 if __name__ == "__main__":
     payment_window_main()
