@@ -21,7 +21,7 @@ export const Rentals = () => (
     </div>
     <div>
       {/* CHANGE IP HERE*/}
-      <iframe width="1500" height="1000" src="http://127.0.0.1:5000/available"></iframe>
+      <iframe width="1500" height="1000" src="http://127.0.0.1:5000/rentals"></iframe>
     </div>
   </Wrapper>
   
