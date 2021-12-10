@@ -18,7 +18,7 @@ def start():
         event, values = window.read()
         if event == sg.WIN_CLOSED:
             break
-        if event == 'Checked out':
+        if event == 'Query':
             sqlGet = "SELECT * FROM RENTALS"
             df_query = pd.read_sql_query(sqlGet, connection)
             sg.popup_scrolled('Result', df_query, size=(100,40))
