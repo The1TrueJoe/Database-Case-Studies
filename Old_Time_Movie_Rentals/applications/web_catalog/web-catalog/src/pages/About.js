@@ -29,6 +29,8 @@ export const About = () => (
         effectiveness of JAB’s designs. Moving into the future, JAB’s mission is to continue supporting
         companies by designing databases that can allow the company to prosper.
       </p>
+      <a href="https://github.com/The1TrueJoe/Database-Case-Studies/tree/main/Old_Time_Movie_Rentals">See our GitHub repository</a>
+      <br></br>
       <br></br>
     </div>
     <div>
