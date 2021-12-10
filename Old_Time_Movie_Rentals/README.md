@@ -30,5 +30,5 @@ Files (TEMP): https://drive.google.com/drive/folders/1FBlnWeJtNBFF6alHhgGA9eqtbi
 - ```cd applications/web_catalog/``` Go to directory
 - ```npm install react``` Install react
 - ```cd ..``` Go to enclosing directory
-- ```sudo bash shellreq.sh`` Install dependencies
+- ```sudo bash shellreq.sh``` Install dependencies
 - ```bash startserver.sh``` Start server
