@@ -17,3 +17,18 @@ Files (TEMP): https://drive.google.com/drive/folders/1FBlnWeJtNBFF6alHhgGA9eqtbi
 - [Database](database/) Database structure and data
 - [Cashier Application](applications/cashier_app/) Applications for cashiers to enter a transaction
 - [Rental Web Application](applications/web_catalog/) Web catalog
+
+### Setup
+
+#### Run Flask API
+```cd applications/backend-api/``` Go to directory
+```pip3 install -r requirements.txt``` Install python dependencies
+```bash run.sh``` Start server
+
+#### Run React
+```sudo apt install npm``` Install npm if necessary
+```cd applications/web_catalog/``` Go to directory
+```npm install react``` Install react
+```cd ..``` Go to enclosing directory
+```sudo bash shellreq.sh`` Install dependencies
+```bash startserver.sh``` Start server
