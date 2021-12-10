@@ -11,7 +11,7 @@ query1 = use_statement + "SELECT CUSTOMER.CustomerName FROM CUSTOMER, MOVIERENTA
 query2 = use_statement + "SELECT CustomerName, CustomerStreet, CustomerState, CustomerZIP FROM CUSTOMER WHERE CustomerCity LIKE 'UpTown' ORDER BY CustomerName;"
 
 # List the total payment received by each employee, sorted by employee number
-query3 = use_statement + "SELECT EMPLOYEE.EmployeeName, EMPLOYEE.EmployeeSIN, TOTAL_PAYMENT.PaymentAmount FROM EMPLOYEE JOIN ( SELECT EmployeeSIN, SUM(PaymentAmount) AS PaymentAmount FROM PAYMENT GROUP BY EmployeeSIN AS TOTAL_PAYMENT ON TOTAL_PAYMENT.EmployeeSIN = EMPLOYEE.EmployeeSIN ORDER BY EmployeeSIN;"
+query3 = use_statement + "SELECT EMPLOYEE.EmployeeName, EMPLOYEE.EmployeeSIN, TOTAL_PAYMENT.PaymentAmount FROM EMPLOYEE JOIN ( SELECT EmployeeSIN, SUM(PaymentAmount ) AS PaymentAmount FROM PAYMENT GROUP BY EmployeeSIN ) AS TOTAL_PAYMENT ON TOTAL_PAYMENT.EmployeeSIN = EMPLOYEE.EmployeeSIN ORDER BY EmployeeSIN;"
 
 # List the total number of movies rented out by each store, grouped and sorted by store ID
 query4 = use_statement + "SELECT MOVIERENTAL.StoreID, COUNT(MOVIERENTAL.StoreID) AS NumberOfRentedOutMovies, STORE.StoreName FROM MOVIERENTAL, STORE WHERE MOVIERENTAL.StoreID = STORE.StoreID GROUP BY StoreID;"
