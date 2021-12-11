@@ -18,7 +18,7 @@ Files (TEMP): https://drive.google.com/drive/folders/1FBlnWeJtNBFF6alHhgGA9eqtbi
 - [Cashier Application](applications/cashier_app/) Applications for cashiers to enter a transaction
 - [Rental Web Application](applications/web_catalog/) Web catalog
 
-### Setup
+### Setup to run web application
 
 #### Run Flask API
 - ```cd applications/backend-api/``` Go to directory
@@ -32,3 +32,8 @@ Files (TEMP): https://drive.google.com/drive/folders/1FBlnWeJtNBFF6alHhgGA9eqtbi
 - ```cd ..``` Go to enclosing directory
 - ```sudo bash shellreq.sh``` Install dependencies
 - ```bash startserver.sh``` Start server
+
+#### Setup to run transaction application
+- Navigate to /applications/cashier_app
+- Make sure all the libraries listed in the requirements.txt are installed
+- Run main.py
