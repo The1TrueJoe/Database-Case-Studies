@@ -9,7 +9,7 @@ Files (TEMP): https://drive.google.com/drive/folders/1FBlnWeJtNBFF6alHhgGA9eqtbi
 - [Part 3 Queries: SQL for 10 specific queries](database/required_queries/)
 - [Part 4 Implementation: Please check our schema on the class database](database/structure/)
 - [Part 5 Programming: Application, Source, Documentation](applications/)
-- [Part 6 Presentation: PPT](documents/Database Project - JAB.pptx/)
+- [Part 6 Presentation: PPT](https://docs.google.com/presentation/d/1IXQn6tPD1BNZZjMvMUS6P-UfW2tmRssfv0w8FWu9Gcw/edit?usp=sharing)
 - [Part 7 Reflection: PMI](documents/)
 - [Part 8 References](documents/)
 
